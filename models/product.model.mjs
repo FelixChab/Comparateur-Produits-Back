@@ -10,7 +10,7 @@ export const productModel = (sequelize, Sequelize) => {
         },
         characteristic:{
             type: Sequelize.JSON,
-            allowNull: false
+            allowNull: true
         }
     });
     return product;

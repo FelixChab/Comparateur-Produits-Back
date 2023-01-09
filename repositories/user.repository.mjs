@@ -6,23 +6,32 @@ export class UserRepository {
         return db.user.create(user)
     }
 
-    findAll(req,res) {
+    findAll() {
+        return db.user.findAll();
+    }
+
+    findOne(login){
+    }
+
+    update(){
 
     }
 
-    findOne(req,res){
-
+    delete(id){
+        return db.user.findOne({where: {
+                id: id
+            }
+    })
+    .then((user) => {
+            if(user){
+                return user.destroy();
+            } else {
+                return Promise.reject({message: 'Cannot find user with id: {'+ id+'}'});
+            }
+        });
     }
 
-    update(req,res){
-
-    }
-
-    delete(req,res){
-
-    }
-
-    deleteAll(req,res){
+    deleteAll(){
 
     }
 

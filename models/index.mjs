@@ -28,6 +28,8 @@ import {userModel} from "./user.model.mjs";
     db.products = productModel(sequelize, Sequelize);
 
     db.category.hasOne(db.products, {
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE',
         foreignKey: {
             allowNull: false
         }

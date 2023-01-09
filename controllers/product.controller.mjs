@@ -1,23 +1,32 @@
-import {UserRepository} from "../repositories/user.repository.mjs";
-export class UserController {
-    repository = new UserRepository();
+import {ProductRepository} from "../repositories/product.repository.mjs";
+
+export class ProductController {
+
+    repository = new ProductRepository();
+
     create(req,res) {
-        const { login, password } = req.body;
+        const { name, description,characteristic,categoryId } = req.body;
 
-        if (!login) {
+        if (!name) {
             res.status(400).send({
-                message: "login field is missing!"
+                message: "name field is missing!"
             });
             return;
         }
-        if(!password) {
+        if(!description) {
             res.status(400).send({
-                message: "password field is missing!"
+                message: "description field is missing!"
+            });
+            return;
+        }
+        if(!categoryId) {
+            res.status(400).send({
+                message: "categoryId field is missing!"
             });
             return;
         }
 
-        this.repository.create(login,password)
+        this.repository.create(name,description, characteristic, categoryId)
             .then(data => res.send(data))
             .catch(err => {
                 res.status(500).send({
@@ -34,6 +43,7 @@ export class UserController {
                     message: err.message || "Some error occurred while finding all the Users."
                 });
             });
+
     }
 
     findOne(req,res){
