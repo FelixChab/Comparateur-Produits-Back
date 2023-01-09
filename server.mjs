@@ -3,6 +3,8 @@ import dotenv from 'dotenv';
 import {indexRoutes} from "./routes/index.routes.mjs";
 import {db} from "./models/index.mjs";
 import {usersRoutes} from "./routes/users.routes.mjs";
+import { CategoryRepository } from './repositories/category.repository.mjs';
+import { categoriesRoutes } from './routes/categories.routes.mjs';
 
 dotenv.config();
 
@@ -22,6 +24,7 @@ app.use((req, res, next) => {
 // SETUP ROUTES
 app.use('/', new indexRoutes());
 app.use('/users', new usersRoutes());
+app.use('/category', new categoriesRoutes());
 
 // INITIALIZE DATABASE
 db.sequelize.sync()
