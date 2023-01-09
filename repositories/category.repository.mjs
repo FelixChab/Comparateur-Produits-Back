@@ -6,9 +6,14 @@ export class CategoryRepository {
         return db.category.create(category)
     }
 
-    findAll(req,res) {
+    findAll() {
         return db.category.findAll();
     }
+
+    getCharacteristic(id){
+        return db.category.findOne({include: db.characteristic_type,where: {id: id}});
+    }
+
 
     findOne(req,res){
 

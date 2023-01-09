@@ -3,6 +3,8 @@ import { productModel } from "./product.model.mjs";
 import { categoryModel } from "./category.model.mjs";
 import dotenv from "dotenv";
 import {userModel} from "./user.model.mjs";
+import {characteristic_typeModel} from "./characteristic_type.model.mjs";
+import {characteristic_valueModel} from "./characteristic_value.model.mjs";
 
     dotenv.config();
     const sequelize = new Sequelize(process.env.DB_DATABASE, process.env.DB_USER, process.env.DB_PASSWORD, {
@@ -26,6 +28,8 @@ import {userModel} from "./user.model.mjs";
     db.user = userModel(sequelize, Sequelize);
     db.category = categoryModel(sequelize, Sequelize);
     db.products = productModel(sequelize, Sequelize);
+    db.characteristic_type = characteristic_typeModel(sequelize, Sequelize);
+    db.characteristic_value = characteristic_valueModel(sequelize, Sequelize);
 
     db.category.hasOne(db.products, {
         onDelete: 'CASCADE',
@@ -34,6 +38,13 @@ import {userModel} from "./user.model.mjs";
             allowNull: false
         }
     });
+
+    db.category.hasMany(db.characteristic_type);
+
+    db.products.belongsToMany(db.characteristic_type, {through: db.characteristic_value});
+    db.characteristic_type.belongsToMany(db.products, {through: db.characteristic_value});
+
+
 
 export { db };
 

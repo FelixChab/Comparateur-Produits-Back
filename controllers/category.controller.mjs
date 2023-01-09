@@ -3,11 +3,17 @@ export class CategoryController {
     repository = new CategoryRepository();
 
     create(req,res) {
-        const { name } = req.body;
+        const { name, characteristics } = req.body;
         console.log(req.body)
         if (!name) {
             res.status(400).send({
                 message: "name field is missing!"
+            });
+            return;
+        }
+        if (!characteristics && !Array.isArray(characteristics)) {
+            res.status(400).send({
+                message: "characteristics field is missing or is not array!"
             });
             return;
         }
@@ -27,6 +33,19 @@ export class CategoryController {
             .catch(err => {
                 res.status(500).send({
                     message: err.message || "Some error occurred while finding all the Categories."
+                });
+            });
+    }
+
+    getCharacteristic(req,res){
+        this.repository.getCharacteristic(req.params.id)
+            .then(data => {
+                if(data) res.send(data);
+                else res.status(400).send({message: 'Cannot find category with id: {'+ id +'}'});
+            })
+            .catch(err => {
+                res.status(500).send({
+                    message: err.message || "Some error occurred while getting all the characteristic."
                 });
             });
     }

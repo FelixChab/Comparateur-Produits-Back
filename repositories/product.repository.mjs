@@ -2,7 +2,7 @@ import { db } from "../models/index.mjs";
 
 export class ProductRepository {
     create(name, description, characteristic, categoryId) {
-        const product = {name, description, characteristic, categoryId};
+        const product = {name, description, categoryId};
         return db.products.create(product);
     }
 
@@ -34,5 +34,4 @@ export class ProductRepository {
     deleteAll(){
 
     }
-
 }

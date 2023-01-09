@@ -7,10 +7,6 @@ export const productModel = (sequelize, Sequelize) => {
         description: {
             type: Sequelize.STRING,
             allowNull: false
-        },
-        characteristic:{
-            type: Sequelize.JSON,
-            allowNull: true
         }
     });
     return product;

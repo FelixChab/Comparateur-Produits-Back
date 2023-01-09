@@ -5,7 +5,7 @@ export class ProductController {
     repository = new ProductRepository();
 
     create(req,res) {
-        const { name, description,characteristic,categoryId } = req.body;
+        const { name, description,categoryId } = req.body;
 
         if (!name) {
             res.status(400).send({
@@ -26,7 +26,7 @@ export class ProductController {
             return;
         }
 
-        this.repository.create(name,description, characteristic, categoryId)
+        this.repository.create(name,description, categoryId)
             .then(data => res.send(data))
             .catch(err => {
                 res.status(500).send({
@@ -43,7 +43,6 @@ export class ProductController {
                     message: err.message || "Some error occurred while finding all the Users."
                 });
             });
-
     }
 
     findOne(req,res){
