@@ -1,6 +1,10 @@
 import express from 'express';
-import { initDatabase } from './database/initDatabase.mjs';
+import dotenv from 'dotenv';
 import {indexRoutes} from "./routes/index.routes.mjs";
+import {db} from "./models/index.mjs";
+import {usersRoutes} from "./routes/users.routes.mjs";
+
+dotenv.config();
 
 const PORT = process.env.PORT || 3000;
 const app = express();
@@ -10,7 +14,6 @@ app.use(express.urlencoded({
 }));
 
 app.use(express.json());
-
 app.use((req, res, next) => {
     console.log(req.method, req.url);
     next();
@@ -18,9 +21,17 @@ app.use((req, res, next) => {
 
 // SETUP ROUTES
 app.use('/', new indexRoutes());
+app.use('/users', new usersRoutes());
 
-// INITIALIZE DATABSE
-initDatabase();
+// INITIALIZE DATABASE
+db.sequelize.sync()
+    .then(() => {
+    console.log("Synced db.");
+})
+    .catch((err) => {
+        console.log("Failed to sync db: "+ err.message);
+    });
+
 
 // LAUNCH SERVER
 
