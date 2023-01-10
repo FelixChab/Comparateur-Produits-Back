@@ -4,7 +4,6 @@ export class CategoryController {
 
     create(req,res) {
         const { name, characteristics } = req.body;
-        console.log(req.body)
         if (!name) {
             res.status(400).send({
                 message: "name field is missing!"
@@ -18,7 +17,9 @@ export class CategoryController {
             return;
         }
 
-        this.repository.create(name)
+        //TODO: Prendre en compte les characteristics lors de la création d'une catégory
+
+        this.repository.create(name, characteristics)
             .then(data => res.send(data))
             .catch(err => {
                 res.status(500).send({

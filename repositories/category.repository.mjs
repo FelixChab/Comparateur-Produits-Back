@@ -1,9 +1,16 @@
 import { db } from "../models/index.mjs";
+import {CharacteristicRepository} from "./characteristic.repository.mjs";
 
 export class CategoryRepository {
-    create(name) {
-        const category = {name}
-        return db.category.create(category)
+    characteristicRepository = new CharacteristicRepository();
+    create(name, characteristics) {
+        const category = {name};
+        return db.category.create(category).then((cat) => {
+            characteristics.forEach((ft) => {
+                this.characteristicRepository.createType(ft.name, cat.id);
+            });
+            return Promise.resolve(cat);
+        });
     }
 
     findAll() {
