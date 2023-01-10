@@ -33,8 +33,8 @@ app.use('/category', new categoriesRoutes());
 // INITIALIZE DATABASE
 db.sequelize.sync({force:true})
     .then(() => {
-    console.log("Synced db.");
         initData();
+        console.log("Synced db.");
 })
     .catch((err) => {
         console.log("Failed to sync db: "+ err.message);

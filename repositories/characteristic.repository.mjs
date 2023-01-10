@@ -2,8 +2,8 @@ import { db } from "../models/index.mjs";
 
 export class CharacteristicRepository {
 
-    createType(name, categoryId) {
-        const characteristic = {name, categoryId};
+    createType(name, type,categoryId) {
+        const characteristic = {name, type, categoryId};
         db.characteristic_type.create(characteristic);
     }
 

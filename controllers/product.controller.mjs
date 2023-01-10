@@ -5,7 +5,7 @@ export class ProductController {
     repository = new ProductRepository();
 
     create(req,res) {
-        const { name, description,categoryId, characteristics } = req.body;
+        const { name, description, price, categoryId, characteristics } = req.body;
 
         if (!name) {
             res.status(400).send({
@@ -16,6 +16,12 @@ export class ProductController {
         if(!description) {
             res.status(400).send({
                 message: "description field is missing!"
+            });
+            return;
+        }
+        if(!price) {
+            res.status(400).send({
+                message: "price field is missing!"
             });
             return;
         }
@@ -32,7 +38,7 @@ export class ProductController {
             return;
         }
 
-        this.repository.create(name,description, categoryId,characteristics)
+        this.repository.create(name, description, price, categoryId,characteristics)
             .then(data => res.send(data))
             .catch(err => {
                 res.status(500).send({

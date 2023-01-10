@@ -12,16 +12,18 @@ export const initData = () => {
 
     // Caractéristiques
     let characteristics = [
-        { name: "VRAM" },
-        { name: "RayTracing" },
-        { name: "DLSS" },
-        { name: "Constructeur" },
-        { name: "Dimensions" },
-        { name: "Connectivité" }
+        { name: "VRAM", type: "number" },
+        { name: "RayTracing", type: "checkbox" },
+        { name: "DLSS", type: "checkbox" },
+        { name: "Constructeur", type: "text" },
+        { name: "Dimensions", type: "number" },
+        { name: "Connectivité", type: "text" }
     ];
 
-    // Création de Catégories
     cat_repo.create("Cartes Graphiques", characteristics);
+
+    // Création de Catégories
+
 
 
 
@@ -81,9 +83,9 @@ export const initData = () => {
 
 
     // Création de Produits
-    product_repo.create("RTX 2070", "Carte graphique Nvidia dôtée de RayTracing", 1, characteristics_value);
-    product_repo.create("RTX 4080", "Carte graphique nouvelle génération Nvidia dôtée de RayTracing et DLSS 2.0", 1, characteristics_value);
-    product_repo.create("GTX 1070 Armor OC", "Ma carte graphique overclock de 2019", 1, characteristics_value);
-    product_repo.create("Radeon RX 6600", "Carte graphique AMD, bon rapport qualité/prix", 1, characteristics_value);
+    product_repo.create("RTX 2070", "Carte graphique Nvidia dôtée de RayTracing", 10, 1, characteristics_value);
+    product_repo.create("RTX 4080", "Carte graphique nouvelle génération Nvidia dôtée de RayTracing et DLSS 2.0", 10,1, characteristics_value);
+    product_repo.create("GTX 1070 Armor OC", "Ma carte graphique overclock de 2019", 10,1, characteristics_value);
+    product_repo.create("Radeon RX 6600", "Carte graphique AMD, bon rapport qualité/prix", 10,1, characteristics_value);
 
 }

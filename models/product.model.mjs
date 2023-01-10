@@ -4,6 +4,14 @@ export const productModel = (sequelize, Sequelize) => {
             type: Sequelize.STRING,
             allowNull: false
         },
+        price: {
+            type: Sequelize.INTEGER,
+            allowNull: false,
+        },
+        image: {
+            type: Sequelize.BLOB,
+            allowNull: true
+        },
         description: {
             type: Sequelize.STRING,
             allowNull: false
