@@ -6,6 +6,7 @@ import {db} from "./models/index.mjs";
 import {usersRoutes} from "./routes/users.routes.mjs";
 import {productsRoutes} from "./routes/products.routes.mjs";
 import { categoriesRoutes } from './routes/categories.routes.mjs';
+import {initData} from "./db_data.mjs";
 dotenv.config();
 
 const PORT = process.env.PORT || 3000;
@@ -30,9 +31,10 @@ app.use('/products', new productsRoutes());
 app.use('/category', new categoriesRoutes());
 
 // INITIALIZE DATABASE
-db.sequelize.sync()
+db.sequelize.sync({force:true})
     .then(() => {
     console.log("Synced db.");
+        initData();
 })
     .catch((err) => {
         console.log("Failed to sync db: "+ err.message);
