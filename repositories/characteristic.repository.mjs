@@ -7,4 +7,9 @@ export class CharacteristicRepository {
         db.characteristic_type.create(characteristic);
     }
 
+    createValue(characteristicTypeId, productId, value){
+        const characteristic = {productId, characteristicTypeId, value};
+        db.characteristic_value.create(characteristic);
+    }
+
 }

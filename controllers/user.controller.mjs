@@ -37,7 +37,14 @@ export class UserController {
     }
 
     findOne(req,res){
-
+        const id = +req.params.id;
+        this.repository.findOne(id)
+            .then(data => res.send(data))
+            .catch(err => {
+                res.status(500).send({
+                    message: err.message || "Some error occurred while finding all the Users."
+                });
+            });
     }
 
     update(req,res){

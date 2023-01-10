@@ -5,7 +5,7 @@ export class ProductController {
     repository = new ProductRepository();
 
     create(req,res) {
-        const { name, description,categoryId } = req.body;
+        const { name, description,categoryId, characteristics } = req.body;
 
         if (!name) {
             res.status(400).send({
@@ -25,8 +25,14 @@ export class ProductController {
             });
             return;
         }
+        if (!characteristics && !Array.isArray(characteristics)) {
+            res.status(400).send({
+                message: "characteristics field is missing or is not array!"
+            });
+            return;
+        }
 
-        this.repository.create(name,description, categoryId)
+        this.repository.create(name,description, categoryId,characteristics)
             .then(data => res.send(data))
             .catch(err => {
                 res.status(500).send({
@@ -46,7 +52,14 @@ export class ProductController {
     }
 
     findOne(req,res){
-
+        const id = +req.params.id;
+        this.repository.findOne(id)
+            .then(data => res.send(data))
+            .catch(err => {
+                res.status(500).send({
+                    message: err.message || "Some error occurred while finding all the Users."
+                });
+            });
     }
 
     update(req,res){

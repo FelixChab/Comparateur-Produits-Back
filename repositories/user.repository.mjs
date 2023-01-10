@@ -10,7 +10,8 @@ export class UserRepository {
         return db.user.findAll();
     }
 
-    findOne(login){
+    findOne(id){
+        return db.user.findOne({where: {id:id}});
     }
 
     update(){

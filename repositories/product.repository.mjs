@@ -1,16 +1,28 @@
 import { db } from "../models/index.mjs";
+import {CharacteristicRepository} from "./characteristic.repository.mjs";
 
 export class ProductRepository {
-    create(name, description, characteristic, categoryId) {
+    characteristicRepository = new CharacteristicRepository();
+    create(name, description, categoryId, characteristics) {
         const product = {name, description, categoryId};
-        return db.products.create(product);
+        return db.products.create(product).then(product => {
+            try{
+                characteristics.forEach((ft) => {
+                    this.characteristicRepository.createValue(ft.characteristicTypeId, product.id, ft.value);
+                });
+            } catch(err){
+                return Promise.reject(err);
+            }
+            return Promise.resolve(product);
+        });
     }
 
     findAll() {
         return db.products.findAll();
     }
 
-    findOne(){
+    findOne(id) {
+        return  db.products.findOne({include: db.category},{where: {id: id}});
     }
 
     update(){
