@@ -1,15 +1,17 @@
 import express from 'express';
 import dotenv from 'dotenv';
+import cors from 'cors';
 import {indexRoutes} from "./routes/index.routes.mjs";
 import {db} from "./models/index.mjs";
 import {usersRoutes} from "./routes/users.routes.mjs";
 import {productsRoutes} from "./routes/products.routes.mjs";
 import { categoriesRoutes } from './routes/categories.routes.mjs';
-
 dotenv.config();
 
 const PORT = process.env.PORT || 3000;
 const app = express();
+
+app.use(cors());
 
 app.use(express.urlencoded({
     extended: true,
