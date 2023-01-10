@@ -1,6 +1,7 @@
 import { db } from "../models/index.mjs";
 
 export class UserRepository {
+
     create(login, password) {
         const user = {login, password}
         return db.user.create(user)
@@ -10,21 +11,17 @@ export class UserRepository {
         return db.user.findAll();
     }
 
-    findOne(id){
+    findOne(id) {
         return db.user.findOne({where: {id:id}});
     }
 
-    update(){
-
+    update() {
+        // TODO
     }
 
     delete(id){
-        return db.user.findOne({where: {
-                id: id
-            }
-    })
-    .then((user) => {
-            if(user){
+        return db.user.findOne({where: { id: id }}).then((user) => {
+            if(user) {
                 return user.destroy();
             } else {
                 return Promise.reject({message: 'Cannot find user with id: {'+ id+'}'});
@@ -32,8 +29,8 @@ export class UserRepository {
         });
     }
 
-    deleteAll(){
-
+    deleteAll() {
+        // TODO
     }
 
 }
