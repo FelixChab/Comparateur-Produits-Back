@@ -2,6 +2,7 @@ import { db } from "../models/index.mjs";
 import {CharacteristicRepository} from "./characteristic.repository.mjs";
 
 export class CategoryRepository {
+    
     characteristicRepository = new CharacteristicRepository();
     create(name, characteristics) {
         const category = {name};
