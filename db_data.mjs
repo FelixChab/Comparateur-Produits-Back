@@ -1,10 +1,12 @@
 import { db } from "./models/index.mjs";
 import { CategoryRepository } from "./repositories/category.repository.mjs";
+import { ProductRepository } from "./repositories/product.repository.mjs";
+import { CharacteristicRepository } from "./repositories/characteristic.repository.mjs";
 
 // Création de jeu de données
 const initData = () => {
 
-    // Chara
+    // Caractéristiques
     let characteristics = [
         { name: "VRAM" },
         { name: "RayTracing" },
@@ -12,6 +14,27 @@ const initData = () => {
         { name: "Constructeur" },
         { name: "Dimensions" }
     ];
+
+    // Initialisations valeurs caractéristiques (RTX 2070)
+    CharacteristicRepository.createValue(1, 1, "11 Go DDR6"); // VRAM
+    CharacteristicRepository.createValue(2, 1, "Oui"); // RayTracing
+    CharacteristicRepository.createValue(3, 1, "DLSS 1.0"); // DLSS
+    CharacteristicRepository.createValue(4, 1, "Gigabyte"); // Constructeur
+    CharacteristicRepository.createValue(5, 1, "226x128x41 (mm)"); // Dimensions
+
+    // Initialisations valeurs caractéristiques (RTX 4080)
+    CharacteristicRepository.createValue(1, 2, "16 Go DDR6"); // VRAM
+    CharacteristicRepository.createValue(2, 2, "Oui"); // RayTracing
+    CharacteristicRepository.createValue(3, 2, "DLSS 2.0"); // DLSS
+    CharacteristicRepository.createValue(4, 2, "Nvidia"); // Constructeur
+    CharacteristicRepository.createValue(5, 2, "304x137x61 (mm)"); // Dimensions
+
+    // Initialisations valeurs caractéristiques (GTX 1070 Armor OC)
+    CharacteristicRepository.createValue(1, 3, "8 Go DDR5"); // VRAM
+    CharacteristicRepository.createValue(2, 3, "Non"); // RayTracing
+    CharacteristicRepository.createValue(3, 3, "Non"); // DLSS
+    CharacteristicRepository.createValue(4, 3, "MSI"); // Constructeur
+    CharacteristicRepository.createValue(5, 3, "279x140x37 (mm)"); // Dimensions
 
     // Création d'utilisateurs
     db.user.create({
@@ -30,21 +53,12 @@ const initData = () => {
         admin: false
     });
 
-    // Création de Produits
-    db.products.create({
-        name: "RTX 2070",
-        description: "Carte graphique Nvidia dôtée de RayTracing"
-    });
-    db.products.create({
-        name: "RTX 4080",
-        description: "Carte graphique nouvelle génération Nvidia dôtée de RayTracing et DLSS 2.0"
-    });
-    db.products.create({
-        name: "GTX 1070 Armor OC",
-        description: "Ma carte graphique overclock de 2019"
-    });
-
     // Création de Catégories
     CategoryRepository.create("Cartes Graphiques", characteristics);
+
+    // Création de Produits
+    ProductRepository.create("RTX 2070", "Carte graphique Nvidia dôtée de RayTracing", 1, characteristics);
+    ProductRepository.create("RTX 4080", "Carte graphique nouvelle génération Nvidia dôtée de RayTracing et DLSS 2.0", 1, characteristics);
+    ProductRepository.create("GTX 1070 Armor OC", "Ma carte graphique overclock de 2019", 1, characteristics);
 
 }
