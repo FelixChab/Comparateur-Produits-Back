@@ -15,7 +15,7 @@ export class CategoryRepository {
     }
 
     findAll() {
-        return db.category.findAll();
+        return db.category.findAll({include: db.products });
     }
 
     getCharacteristic(id){
