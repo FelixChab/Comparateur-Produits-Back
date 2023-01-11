@@ -45,7 +45,7 @@ export class CategoryRepository {
             for (const type of product.characteristic_types) {
                 types.push({name:type.name, value:type.characteristic_value.value});
             }
-            const temp = {name: product.name, price:product.price, image: product.image, description: product.description, characteristics: types};
+            const temp = {id:product.id, name: product.name, price:product.price, image: product.image, description: product.description, characteristics: types};
             products_objects.push(temp);
         }
         const object = {id:cat.id, name:cat.name, products:products_objects};

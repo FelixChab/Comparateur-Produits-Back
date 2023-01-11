@@ -42,7 +42,7 @@ export class ProductRepository {
     }
 
     findOne(id) {
-        return  db.products.findOne({where: {id: id}});
+        return db.products.findOne({where: {id:id},include: [{model:db.characteristic_type, attributes:["name"]}]});
     }
 
     update() {
