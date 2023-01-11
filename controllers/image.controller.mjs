@@ -7,6 +7,6 @@ export class ImageController {
         const __filename = fileURLToPath(import.meta.url);
         const __dirname = path.dirname(__filename);
         const customPath = path.join(__dirname, '..', 'images/');
-        res.sendFile(customPath + id +'.jpeg');
+        res.sendFile(customPath + id +'.png');
     }
 }
