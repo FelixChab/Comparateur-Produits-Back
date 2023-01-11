@@ -17,8 +17,6 @@ export class CategoryController {
             return;
         }
 
-        //TODO: Prendre en compte les characteristics lors de la création d'une catégory
-
         this.repository.create(name, characteristics)
             .then(data => res.send(data))
             .catch(err => {

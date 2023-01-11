@@ -1,18 +1,24 @@
 import { db } from "../models/index.mjs";
-import {CharacteristicRepository} from "./characteristic.repository.mjs";
 
 export class CategoryRepository {
-    
-    characteristicRepository = new CharacteristicRepository();
+
     create(name, characteristics) {
-        const category = {name};
-        return db.category.create(category).then((cat) => {
-            characteristics.forEach((ft) => {
-                this.characteristicRepository.createType(ft.name, ft.type, cat.id);
+        try {
+            const category = {name};
+            return db.category.create(category).then(async (cat) => {
+                for (const ft of characteristics) {
+                    const cha = await db.characteristic_type.create(ft);
+                    cat.addCharacteristic_type(cha);
+                }
+                return Promise.resolve(cat);
             });
-            return Promise.resolve(cat);
-        });
+
+        } catch (err) {
+            return Promise.reject('Error on creating category');
+
+        }
     }
+
 
     findAll() {
         return db.category.findAll({include: db.products });
@@ -27,8 +33,24 @@ export class CategoryRepository {
 
     }
 
-    findProductByCategory(id){
-        return db.category.findOne({include: db.products, where:{id:id}});
+    async findProductByCategory(id) {
+        const cat = await db.category.findOne({where:{id:id}, include: db.products});
+        const catId = cat.id;
+        const products = await db.products.findAll({where: {categoryId:catId},include: [{model:db.characteristic_type, attributes:["name"]}]});
+        //return products;
+
+        const products_objects = [];
+        for(const product of products) {
+            const types = [];
+            for (const type of product.characteristic_types) {
+                types.push({name:type.name, value:type.characteristic_value.value});
+            }
+            const temp = {name: product.name, price:product.price, image: product.image, description: product.description, characteristics: types};
+            products_objects.push(temp);
+        }
+        const object = {id:cat.id, name:cat.name, products:products_objects};
+
+        return object;
     }
 
     update(req,res){

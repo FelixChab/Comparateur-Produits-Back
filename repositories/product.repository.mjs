@@ -1,23 +1,41 @@
 import { db } from "../models/index.mjs";
-import {CharacteristicRepository} from "./characteristic.repository.mjs";
 
 export class ProductRepository {
 
-    characteristicRepository = new CharacteristicRepository();
-    create(name, description, price, categoryId, characteristics, image) {
-        const product = {name, description, price, categoryId, image};
+    async create(name, description, price, categoryId, characteristics, image) {
+        try{
+            let product = {name, description, categoryId, price, image};
+            product = await db.products.create(product);
 
-        return db.products.create(product).then(product => {
-            try {
-                characteristics.forEach((ft) => {
-                    this.characteristicRepository.createValue(ft.characteristicTypeId, product.id, ft.value);
-                });
-            } catch(err) {
-                return Promise.reject(err);
+            for (const ft of characteristics) {
+                const cha_type = await db.characteristic_type.findOne({where: {id: ft.characteristicTypeId}});
+                await db.characteristic_value.create({value: ft.value, productId: product.id, characteristicTypeId: cha_type.id});
             }
-            return Promise.resolve(product);
-        });
+            return product;
+        } catch(err){
+            return Promise.reject('Error on creating product');
+        }
+
+
     }
+
+
+
+        // return db.products.create(product).then(async product => {
+        //     try {
+        //         category.addProduct(product);
+        //         for (const ft of characteristics) {
+        //             const cha_type = await db.characteristic_type.findOne({where: {id: ft.id}});
+        //             const cha_value = db.characteristic_type.create(ft.value);
+        //             cha_value.addCharacteristic_type(cha_type);
+        //             cha_value.addProduct(product);
+        //             cat.addCharacteristic_value(cha_value);
+        //         }
+        //     } catch (err) {
+        //         return Promise.reject(err);
+        //     }
+        //     return Promise.resolve(product);
+        // });
 
     findAll() {
         return db.products.findAll();
