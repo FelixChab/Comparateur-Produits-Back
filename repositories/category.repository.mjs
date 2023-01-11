@@ -27,6 +27,10 @@ export class CategoryRepository {
 
     }
 
+    findProductByCategory(id){
+        return db.category.findOne({include: db.products, where:{id:id}});
+    }
+
     update(req,res){
 
     }

@@ -4,8 +4,9 @@ import {CharacteristicRepository} from "./characteristic.repository.mjs";
 export class ProductRepository {
 
     characteristicRepository = new CharacteristicRepository();
-    create(name, description, price, categoryId, characteristics) {
-        const product = {name, description, price, categoryId};
+    create(name, description, price, categoryId, characteristics, image) {
+        const product = {name, description, price, categoryId, image};
+
         return db.products.create(product).then(product => {
             try {
                 characteristics.forEach((ft) => {

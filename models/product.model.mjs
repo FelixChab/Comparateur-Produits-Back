@@ -9,7 +9,7 @@ export const productModel = (sequelize, Sequelize) => {
             allowNull: false,
         },
         image: {
-            type: Sequelize.BLOB,
+            type: Sequelize.BLOB('long'),
             allowNull: true
         },
         description: {

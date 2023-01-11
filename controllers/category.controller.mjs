@@ -55,6 +55,18 @@ export class CategoryController {
 
     }
 
+    findProductByCategory(req,res){
+        this.repository.findProductByCategory(req.params.id)
+            .then((data) => {
+            if(data) res.send(data);
+            else res.status(400).send({message: 'Cannot find category with id: {'+ id +'}'});
+            }).catch(err => {
+            res.status(500).send({
+                message: err.message || "Some error occurred while getting the category."
+            });
+        })
+    };
+
     update(req,res){
 
     }
