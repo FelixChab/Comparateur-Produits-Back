@@ -9,4 +9,9 @@ export class ImageController {
         const customPath = path.join(__dirname, '..', 'images/');
         res.sendFile(customPath + id +'.png');
     }
+
+    upload(req,res){
+        console.log(req);
+        res.send(req.body);
+    }
 }
