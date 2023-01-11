@@ -8,7 +8,7 @@ export class CategoryRepository {
         const category = {name};
         return db.category.create(category).then((cat) => {
             characteristics.forEach((ft) => {
-                this.characteristicRepository.createType(ft.name, cat.id);
+                this.characteristicRepository.createType(ft.name, ft.type, cat.id);
             });
             return Promise.resolve(cat);
         });

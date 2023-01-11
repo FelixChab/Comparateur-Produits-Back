@@ -1,5 +1,6 @@
 import {ProductRepository} from "../repositories/product.repository.mjs";
 import {LoginRepository} from "../repositories/login.repository.mjs";
+import jwt from "jsonwebtoken";
 
 export class IndexController {
 
@@ -7,7 +8,6 @@ export class IndexController {
     status(req, res) {
         res.status(200).end('OK');
     }
-
 
     login(req,res) {
         const { login, password } = req.body;
@@ -24,18 +24,18 @@ export class IndexController {
             return;
         }
         this.loginRepository.login(login, password)
-            .then((user)=> {
-                if(!user){
+            .then((token)=> {
+                if(!token){
                     res.status(500).send({
                         message: "Cannot connect!"
                     });
                     return;
                 }
-            res.send({login:user.login});
+            res.send({token:token});
         })
             .catch(err => {
             res.status(500).send({
-                message: err.message || "Cannot connect."
+                message: "Cannot connect!"
             });
         });
     }

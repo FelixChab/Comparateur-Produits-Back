@@ -33,7 +33,7 @@ import {tokenModel} from "./token.model.mjs";
     db.characteristic_type = characteristic_typeModel(sequelize, Sequelize);
     db.characteristic_value = characteristic_valueModel(sequelize, Sequelize);
 
-    db.token.hasOne(db.user);
+    db.user.hasMany(db.token);
     db.category.hasOne(db.products, {
         onDelete: 'CASCADE',
         onUpdate: 'CASCADE',
