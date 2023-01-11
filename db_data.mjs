@@ -69,17 +69,12 @@ export const initData = () => {
     // Création d'utilisateurs
     db.user.create({
         login: "admin", 
-        password: "admin", 
+        password: "$2b$10$1pU1nE/1Hmv2TV8JeBln3uS0W43CaK4fjclIl2kyClNYj.mh1J6o6",
         admin: true 
     });
     db.user.create({
-        login: "fchabellard",
-        password: "fefe",
-        admin: false
-    });
-    db.user.create({
         login: "pdelagrange",
-        password: "pepe",
+        password: "$2b$10$SdZvZAhtZMocef0/Jq5pxOi8A8/DYfX6QSdf9qXHgByzZcmqs2pxe",
         admin: false
     });
 

@@ -1,9 +1,11 @@
 import { db } from "../models/index.mjs";
+import bcrypt from 'bcrypt';
 
 export class UserRepository {
 
     create(login, password) {
-        const user = {login, password}
+        password = bcrypt.hashSync(password, 10);
+        const user = {login, password};
         return db.user.create(user)
     }
 
