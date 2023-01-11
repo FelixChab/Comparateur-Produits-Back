@@ -21,6 +21,9 @@ export const initData = () => {
     ];
 
     cat_repo.create("Cartes Graphiques", characteristics);
+    cat_repo.create("Frigorificateur", characteristics);
+    cat_repo.create("Enceinte Portable",[]);
+    cat_repo.create("Bonnet Spiderman",[]);
 
     // Création de Catégories
 
