@@ -7,6 +7,7 @@ import {usersRoutes} from "./routes/users.routes.mjs";
 import {productsRoutes} from "./routes/products.routes.mjs";
 import { categoriesRoutes } from './routes/categories.routes.mjs';
 import {initData} from "./db_data.mjs";
+import {imagesRoute} from "./routes/image.route.mjs";
 dotenv.config();
 
 const PORT = process.env.PORT || 3000;
@@ -29,6 +30,7 @@ app.use('/', new indexRoutes());
 app.use('/users', new usersRoutes());
 app.use('/products', new productsRoutes());
 app.use('/category', new categoriesRoutes());
+app.use('/image', new imagesRoute());
 
 // INITIALIZE DATABASE
 db.sequelize.sync({force:true})
