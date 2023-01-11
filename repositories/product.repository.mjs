@@ -23,7 +23,7 @@ export class ProductRepository {
     }
 
     findOne(id) {
-        return  db.products.findOne({include: db.category}, {where: {id: id}});
+        return  db.products.findOne({where: {id: id}});
     }
 
     update() {
