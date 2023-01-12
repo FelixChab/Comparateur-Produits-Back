@@ -1,4 +1,8 @@
 import {ProductRepository} from "../repositories/product.repository.mjs";
+import * as fs from "fs";
+import {fileURLToPath} from "url";
+import path from "path";
+import base64toFile from "node-base64-to-file";
 
 export class ProductController {
 
@@ -93,7 +97,19 @@ export class ProductController {
 
     getImage(req,res){
         this.repository.getImage(req.params.id)
-            .then(data => res.sendFile(data))
+            .then(data => {
+                const base64String = data.data.toString();
+                let base64Image = base64String.split(';base64,').pop();
+                fs.writeFile('temp/image.png', base64Image, {encoding: 'base64'}, function(err) {
+                    console.log('File created');
+
+                    const __filename = fileURLToPath(import.meta.url);
+                    const __dirname = path.dirname(__filename);
+                    const customPath = path.join(__dirname, '..', '/temp');
+                    res.sendFile(customPath+'/image.png')
+                });
+
+            })
             .catch(err => {
                 message: err.message || "Some error occurred while retrieving the image";
             });

@@ -26,6 +26,7 @@
     "mariadb": "^3.0.2",
     "mysql": "^2.18.1",
     "mysql2": "^2.3.3",
+    "node-base64-to-file": "^1.0.4",
     "sequelize": "^6.28.0"
   },
   "devDependencies": {

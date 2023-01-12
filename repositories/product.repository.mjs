@@ -7,7 +7,6 @@ export class ProductRepository {
             let product = {name, description, categoryId, price, link};
             product = await db.products.create(product);
             await db.images.create({data:image, productId: product.id});
-            //product.setImage({data:image});
 
             for (const ft of characteristics) {
                 const cha_type = await db.characteristic_type.findOne({where: {id: ft.characteristicTypeId}});

@@ -13,7 +13,7 @@ export const initData = () => {
 
     // Caractéristiques
     let characteristics = [
-        { name: "VRAM", type: "text" },
+        { name: "VRAM", type: "number" },
         { name: "RayTracing", type: "checkbox" },
         { name: "DLSS", type: "checkbox" },
         { name: "Constructeur", type: "text" },
@@ -32,7 +32,7 @@ export const initData = () => {
 
 
     const value_RTX2070= [
-        {characteristicTypeId: 1, value: "11 Go DDR6"},
+        {characteristicTypeId: 1, value: "11"},
         {characteristicTypeId: 2, value: "Oui"},
         {characteristicTypeId: 3, value: "Oui"},
         {characteristicTypeId: 4, value: "Nvidia"},
@@ -41,7 +41,7 @@ export const initData = () => {
     ];
 
     const value_RTX4080= [
-        {characteristicTypeId: 1, value: "16 Go DDR6"},
+        {characteristicTypeId: 1, value: "16"},
         {characteristicTypeId: 2, value: "Oui"},
         {characteristicTypeId: 3, value: "Oui"},
         {characteristicTypeId: 4, value: "Nvidia"},
@@ -50,7 +50,7 @@ export const initData = () => {
     ];
 
     const value_GTX1070= [
-        {characteristicTypeId: 1, value: "8 Go DDR5"},
+        {characteristicTypeId: 1, value: "8"},
         {characteristicTypeId: 2, value: "Non"},
         {characteristicTypeId: 3, value: "Non"},
         {characteristicTypeId: 4, value: "Nvidia"},
@@ -60,7 +60,7 @@ export const initData = () => {
 
 
     const value_RX6600= [
-        {characteristicTypeId: 1, value: "8 Go DDR6"},
+        {characteristicTypeId: 1, value: "8"},
         {characteristicTypeId: 2, value: "Non"},
         {characteristicTypeId: 3, value: "Non"},
         {characteristicTypeId: 4, value: "AMD"},
@@ -90,22 +90,17 @@ export const initData = () => {
     var binaryThree = fs.readFileSync(customPath+'3.png').toString("base64");
     var binaryFor = fs.readFileSync(customPath+'4.png').toString("base64");
     var convertedOne = new Buffer(binaryOne).toString();
-    var convertedTwo = new Buffer(binaryTwo).toString();
-    var convertedThree = new Buffer(binaryThree).toString();
-    var convertedFor = new Buffer(binaryFor).toString();
+    var convertedTwo = new Buffer(binaryTwo).toString('base64');
+    var convertedThree = new Buffer(binaryThree).toString('base64');
+    var convertedFor = new Buffer(binaryFor).toString('base64');
     convertedOne = "data:image/png;base64,"+convertedOne;
     convertedTwo = "data:image/png;base64,"+convertedTwo;
     convertedThree = "data:image/png;base64,"+convertedThree;
     convertedFor = "data:image/png;base64,"+convertedFor;
 
-    // const convertedOne = "";
-    // const convertedTwo = "";
-    // const convertedThree = "";
-    // const convertedFor = "";
-
     product_repo.create("RTX 2070", "Carte graphique Nvidia dôtée de RayTracing", 449, 1, value_RTX2070, convertedOne, "link");
-    product_repo.create("RTX 4080", "Carte graphique nouvelle génération Nvidia dôtée de RayTracing et DLSS 2.0", 1499,1,value_RTX4080, convertedTwo,"link");
-    product_repo.create("GTX 1070 Armor OC", "Ma carte graphique overclock de 2019", 349,1, value_GTX1070, convertedThree,"link");
-    product_repo.create("Radeon RX 6600", "Carte graphique AMD, bon rapport qualité/prix", 449,1, value_RX6600, convertedFor,"link");
+    product_repo.create("RTX 4080", "Carte graphique nouvelle génération Nvidia dôtée de RayTracing et DLSS 2.0", 1499,1,value_RTX4080, convertedOne,"link");
+    product_repo.create("GTX 1070 Armor OC", "Ma carte graphique overclock de 2019", 349,1, value_GTX1070, convertedOne,"link");
+    product_repo.create("Radeon RX 6600", "Carte graphique AMD, bon rapport qualité/prix", 449,1, value_RX6600, convertedOne,"link");
 
 }
