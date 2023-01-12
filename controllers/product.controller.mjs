@@ -5,7 +5,7 @@ export class ProductController {
     repository = new ProductRepository();
 
     create(req,res) {
-        const { name, description, price, categoryId, characteristics, image, link } = req.body;
+        const { name, description, price, categoryId, characteristics,image,link } = req.body;
         if (!name) {
             res.status(400).send({
                 message: "name field is missing!"
@@ -89,6 +89,14 @@ export class ProductController {
     }
 
     deleteAll(req,res){
+    }
+
+    getImage(req,res){
+        this.repository.getImage(req.params.id)
+            .then(data => res.sendFile(data))
+            .catch(err => {
+                message: err.message || "Some error occurred while retrieving the image";
+            });
     }
 
     latests(req,res){

@@ -6,6 +6,7 @@ import {userModel} from "./user.model.mjs";
 import {characteristic_typeModel} from "./characteristic_type.model.mjs";
 import {characteristic_valueModel} from "./characteristic_value.model.mjs";
 import {tokenModel} from "./token.model.mjs";
+import {imageModel} from "./image.model.mjs";
 
     dotenv.config();
     const sequelize = new Sequelize(process.env.DB_DATABASE, process.env.DB_USER, process.env.DB_PASSWORD, {
@@ -32,8 +33,11 @@ import {tokenModel} from "./token.model.mjs";
     db.products = productModel(sequelize, Sequelize);
     db.characteristic_type = characteristic_typeModel(sequelize, Sequelize);
     db.characteristic_value = characteristic_valueModel(sequelize, Sequelize);
+    db.images = imageModel(sequelize, Sequelize);
 
     db.user.hasMany(db.token);
+    db.products.hasOne(db.images);
+
     db.category.hasMany(db.products, {
         onDelete: 'CASCADE',
         onUpdate: 'CASCADE',

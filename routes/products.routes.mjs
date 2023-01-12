@@ -10,5 +10,6 @@ export function productsRoutes() {
     router.post('/create', (req, res) => controller.create(req,res));
     router.post('/delete', (req,res) => controller.delete(req,res));
     router.get('/:id', (req,res) => controller.findOne(req,res));
+    router.get('/:id/image', (req,res) =>controller.getImage(req,res));
     return router;
 }

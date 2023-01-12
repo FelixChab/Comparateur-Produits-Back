@@ -98,9 +98,14 @@ export const initData = () => {
     convertedThree = "data:image/png;base64,"+convertedThree;
     convertedFor = "data:image/png;base64,"+convertedFor;
 
-    product_repo.create("RTX 2070", "Carte graphique Nvidia dôtée de RayTracing", 449, 1, value_RTX2070, convertedOne);
-    product_repo.create("RTX 4080", "Carte graphique nouvelle génération Nvidia dôtée de RayTracing et DLSS 2.0", 1499,1,value_RTX4080, convertedTwo);
-    product_repo.create("GTX 1070 Armor OC", "Ma carte graphique overclock de 2019", 349,1, value_GTX1070, convertedThree);
-    product_repo.create("Radeon RX 6600", "Carte graphique AMD, bon rapport qualité/prix", 449,1, value_RX6600, convertedFor);
+    // const convertedOne = "";
+    // const convertedTwo = "";
+    // const convertedThree = "";
+    // const convertedFor = "";
+
+    product_repo.create("RTX 2070", "Carte graphique Nvidia dôtée de RayTracing", 449, 1, value_RTX2070, convertedOne, "link");
+    product_repo.create("RTX 4080", "Carte graphique nouvelle génération Nvidia dôtée de RayTracing et DLSS 2.0", 1499,1,value_RTX4080, convertedTwo,"link");
+    product_repo.create("GTX 1070 Armor OC", "Ma carte graphique overclock de 2019", 349,1, value_GTX1070, convertedThree,"link");
+    product_repo.create("Radeon RX 6600", "Carte graphique AMD, bon rapport qualité/prix", 449,1, value_RX6600, convertedFor,"link");
 
 }

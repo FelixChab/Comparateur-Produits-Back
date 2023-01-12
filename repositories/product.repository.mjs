@@ -2,10 +2,12 @@ import { db } from "../models/index.mjs";
 
 export class ProductRepository {
 
-    async create(name, description, price, categoryId, characteristics, image, link) {
+    async create(name, description, price, categoryId, characteristics,image, link) {
         try{
-            let product = {name, description, categoryId, price, image, link};
+            let product = {name, description, categoryId, price, link};
             product = await db.products.create(product);
+            await db.images.create({data:image, productId: product.id});
+            //product.setImage({data:image});
 
             for (const ft of characteristics) {
                 const cha_type = await db.characteristic_type.findOne({where: {id: ft.characteristicTypeId}});
@@ -15,8 +17,6 @@ export class ProductRepository {
         } catch(err){
            // return Promise.reject('Error on creating product');
         }
-
-
     }
 
 
@@ -64,8 +64,8 @@ export class ProductRepository {
         return db.products.findAll({limit:5});
     }
 
-    deleteAll() {
-        // TODO
+    getImage(id){
+        return db.images.findOne({where:{productId:id}});
     }
     
 }
