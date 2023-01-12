@@ -96,17 +96,23 @@ export class ProductController {
     }
 
     getImage(req,res){
+        const __filename = fileURLToPath(import.meta.url);
+        const __dirname = path.dirname(__filename);
+        const customPath = path.join(__dirname, '..', '/temp');
+        const id = req.params.id;
+
+        if(fs.existsSync(customPath+"/"+id+".png")) {
+            res.sendFile(customPath + "/" + id + ".png");
+            return;
+        }
+
         this.repository.getImage(req.params.id)
             .then(data => {
                 const base64String = data.data.toString();
                 let base64Image = base64String.split(';base64,').pop();
-                fs.writeFile('temp/image.png', base64Image, {encoding: 'base64'}, function(err) {
+                fs.writeFile('temp/'+id+'.png', base64Image, {encoding: 'base64'}, function(err) {
                     console.log('File created');
-
-                    const __filename = fileURLToPath(import.meta.url);
-                    const __dirname = path.dirname(__filename);
-                    const customPath = path.join(__dirname, '..', '/temp');
-                    res.sendFile(customPath+'/image.png')
+                    res.sendFile(customPath + "/" + id + ".png");
                 });
 
             })
