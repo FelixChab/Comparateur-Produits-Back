@@ -2,9 +2,9 @@ import { db } from "../models/index.mjs";
 
 export class ProductRepository {
 
-    async create(name, description, price, categoryId, characteristics, image) {
+    async create(name, description, price, categoryId, characteristics, image, link) {
         try{
-            let product = {name, description, categoryId, price, image};
+            let product = {name, description, categoryId, price, image, link};
             product = await db.products.create(product);
 
             for (const ft of characteristics) {

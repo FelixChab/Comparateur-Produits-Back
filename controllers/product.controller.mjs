@@ -5,7 +5,7 @@ export class ProductController {
     repository = new ProductRepository();
 
     create(req,res) {
-        const { name, description, price, categoryId, characteristics, image } = req.body;
+        const { name, description, price, categoryId, characteristics, image, link } = req.body;
         if (!name) {
             res.status(400).send({
                 message: "name field is missing!"
@@ -37,11 +37,11 @@ export class ProductController {
             return;
         }
 
-        this.repository.create(name, description, price, categoryId,characteristics,image)
+        this.repository.create(name, description, price, categoryId,characteristics,image,link)
             .then(data => res.send(data))
             .catch(err => {
                 res.status(500).send({
-                    message: err.message || "Some error occurred while creating the User."
+                    message: err.message || "Some error occurred while creating the Product."
                 });
             });
     }

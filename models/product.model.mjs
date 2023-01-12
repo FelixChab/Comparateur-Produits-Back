@@ -6,7 +6,7 @@ export const productModel = (sequelize, Sequelize) => {
         },
         price: {
             type: Sequelize.INTEGER,
-            allowNull: false,
+            allowNull: false
         },
         image: {
             type: Sequelize.BLOB('long'),
@@ -15,6 +15,10 @@ export const productModel = (sequelize, Sequelize) => {
         description: {
             type: Sequelize.STRING,
             allowNull: false
+        },
+        link: {
+            type: Sequelize.STRING,
+            allowNull: true
         }
     });
     return product;
