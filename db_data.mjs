@@ -33,8 +33,8 @@ export const initData = () => {
 
     const value_RTX2070= [
         {characteristicTypeId: 1, value: "11"},
-        {characteristicTypeId: 2, value: "Oui"},
-        {characteristicTypeId: 3, value: "Oui"},
+        {characteristicTypeId: 2, value: "1"},
+        {characteristicTypeId: 3, value: "1"},
         {characteristicTypeId: 4, value: "Nvidia"},
         {characteristicTypeId: 5, value: "226x128x41 (mm)"},
         {characteristicTypeId: 6, value: "DisplayPort / HDMI 2.0"}
@@ -42,8 +42,8 @@ export const initData = () => {
 
     const value_RTX4080= [
         {characteristicTypeId: 1, value: "16"},
-        {characteristicTypeId: 2, value: "Oui"},
-        {characteristicTypeId: 3, value: "Oui"},
+        {characteristicTypeId: 2, value: "1"},
+        {characteristicTypeId: 3, value: "1"},
         {characteristicTypeId: 4, value: "Nvidia"},
         {characteristicTypeId: 5, value: "304x137x61 (mm)"},
         {characteristicTypeId: 6, value: "DisplayPort / HDMI 2.1"}
@@ -51,8 +51,8 @@ export const initData = () => {
 
     const value_GTX1070= [
         {characteristicTypeId: 1, value: "8"},
-        {characteristicTypeId: 2, value: "Non"},
-        {characteristicTypeId: 3, value: "Non"},
+        {characteristicTypeId: 2, value: "0"},
+        {characteristicTypeId: 3, value: "0"},
         {characteristicTypeId: 4, value: "Nvidia"},
         {characteristicTypeId: 5, value: "279x140x37 (mm)"},
         {characteristicTypeId: 6, value: "DisplayPort / HDMI 2.0"}
@@ -61,8 +61,8 @@ export const initData = () => {
 
     const value_RX6600= [
         {characteristicTypeId: 1, value: "8"},
-        {characteristicTypeId: 2, value: "Non"},
-        {characteristicTypeId: 3, value: "Non"},
+        {characteristicTypeId: 2, value: "0"},
+        {characteristicTypeId: 3, value: "0"},
         {characteristicTypeId: 4, value: "AMD"},
         {characteristicTypeId: 5, value: "193x120x40 (mm)"},
         {characteristicTypeId: 6, value: "DisplayPort / HDMI 2.1"}
