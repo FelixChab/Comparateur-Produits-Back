@@ -13,7 +13,7 @@ export class ProductRepository {
             }
             return product;
         } catch(err){
-            return Promise.reject('Error on creating product');
+           // return Promise.reject('Error on creating product');
         }
 
 
@@ -42,7 +42,7 @@ export class ProductRepository {
     }
 
     findOne(id) {
-        return db.products.findOne({where: {id:id},include: [{model:db.characteristic_type, attributes:["name"]}]});
+        return db.products.findOne({where: {id:id},include: [{model:db.characteristic_type, attributes:["name", "type"]}]});
     }
 
     update() {

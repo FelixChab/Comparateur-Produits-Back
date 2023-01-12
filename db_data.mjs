@@ -85,14 +85,22 @@ export const initData = () => {
     const __filename = fileURLToPath(import.meta.url);
     const __dirname = path.dirname(__filename);
     const customPath = path.join(__dirname, 'images/');
-    var binarydata = fs.readFileSync(customPath+'1.png').toString("base64");
-    var converted = new Buffer(binarydata).toString();
-    converted = "data:image/png;base64,"+converted;
+    var binaryOne = fs.readFileSync(customPath+'1.png').toString("base64");
+    var binaryTwo = fs.readFileSync(customPath+'2.png').toString("base64");
+    var binaryThree = fs.readFileSync(customPath+'3.png').toString("base64");
+    var binaryFor = fs.readFileSync(customPath+'4.png').toString("base64");
+    var convertedOne = new Buffer(binaryOne).toString();
+    var convertedTwo = new Buffer(binaryTwo).toString();
+    var convertedThree = new Buffer(binaryThree).toString();
+    var convertedFor = new Buffer(binaryFor).toString();
+    convertedOne = "data:image/png;base64,"+convertedOne;
+    convertedTwo = "data:image/png;base64,"+convertedTwo;
+    convertedThree = "data:image/png;base64,"+convertedThree;
+    convertedFor = "data:image/png;base64,"+convertedFor;
 
-    console.log('READER');
-    product_repo.create("RTX 2070", "Carte graphique Nvidia dôtée de RayTracing", 10, 1, value_RTX2070, converted);
-    product_repo.create("RTX 4080", "Carte graphique nouvelle génération Nvidia dôtée de RayTracing et DLSS 2.0", 10,1,value_RTX4080, converted);
-    product_repo.create("GTX 1070 Armor OC", "Ma carte graphique overclock de 2019", 10,1, value_GTX1070, converted);
-    product_repo.create("Radeon RX 6600", "Carte graphique AMD, bon rapport qualité/prix", 10,1, value_RX6600, converted);
+    product_repo.create("RTX 2070", "Carte graphique Nvidia dôtée de RayTracing", 449, 1, value_RTX2070, convertedOne);
+    product_repo.create("RTX 4080", "Carte graphique nouvelle génération Nvidia dôtée de RayTracing et DLSS 2.0", 1499,1,value_RTX4080, convertedTwo);
+    product_repo.create("GTX 1070 Armor OC", "Ma carte graphique overclock de 2019", 349,1, value_GTX1070, convertedThree);
+    product_repo.create("Radeon RX 6600", "Carte graphique AMD, bon rapport qualité/prix", 449,1, value_RX6600, convertedFor);
 
 }
