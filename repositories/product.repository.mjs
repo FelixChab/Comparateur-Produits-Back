@@ -60,8 +60,8 @@ export class ProductRepository {
             });
     }
 
-    latest(){
-        return db.products.findAll({order:['createdAt', 'DESC'], limit:5});
+    latests(){
+        return db.products.findAll({limit:5});
     }
 
     deleteAll() {

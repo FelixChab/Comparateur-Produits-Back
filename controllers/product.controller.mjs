@@ -91,8 +91,8 @@ export class ProductController {
     deleteAll(req,res){
     }
 
-    latest(req,res){
-        this.repository.latest()
+    latests(req,res){
+        this.repository.latests()
             .then(data => res.send(data))
             .catch(err => {
                 message: err.message || "Some error occurred while retrieving the latest products."
