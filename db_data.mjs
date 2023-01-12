@@ -8,6 +8,25 @@ import * as fs from "fs";
 // Création de jeu de données
 export const initData = () => {
 
+    const __filename = fileURLToPath(import.meta.url);
+    const __dirname = path.dirname(__filename);
+    const customPath = path.join(__dirname, 'images/');
+    const tempDirPath = path.join(__dirname, 'temp/');
+
+
+    fs.readdir(tempDirPath, (err, files) => {
+        if (err) throw err;
+
+        for (const file of files) {
+            if(file !== ".gitkeep"){
+                fs.unlink(path.join(tempDirPath, file), (err) => {
+                    if (err) throw err;
+                });
+            }
+
+        }
+    });
+
     const cat_repo = new CategoryRepository();
     const product_repo = new ProductRepository();
 
@@ -82,9 +101,7 @@ export const initData = () => {
 
     // Création de Produits
 
-    const __filename = fileURLToPath(import.meta.url);
-    const __dirname = path.dirname(__filename);
-    const customPath = path.join(__dirname, 'images/');
+
     var binaryOne = fs.readFileSync(customPath+'1.png').toString("base64");
     var binaryTwo = fs.readFileSync(customPath+'2.png').toString("base64");
     var binaryThree = fs.readFileSync(customPath+'3.png').toString("base64");
