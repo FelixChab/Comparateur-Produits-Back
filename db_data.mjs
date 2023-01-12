@@ -98,9 +98,9 @@ export const initData = () => {
     convertedThree = "data:image/png;base64,"+convertedThree;
     convertedFor = "data:image/png;base64,"+convertedFor;
 
-    product_repo.create("RTX 2070", "Carte graphique Nvidia dôtée de RayTracing", 449, 1, value_RTX2070, convertedOne, "link");
-    product_repo.create("RTX 4080", "Carte graphique nouvelle génération Nvidia dôtée de RayTracing et DLSS 2.0", 1499,1,value_RTX4080, convertedOne,"link");
-    product_repo.create("GTX 1070 Armor OC", "Ma carte graphique overclock de 2019", 349,1, value_GTX1070, convertedOne,"link");
-    product_repo.create("Radeon RX 6600", "Carte graphique AMD, bon rapport qualité/prix", 449,1, value_RX6600, convertedOne,"link");
+    product_repo.create("RTX 2070", "Carte graphique Nvidia dôtée de RayTracing", 449, 1, value_RTX2070, convertedOne, "https://www.amazon.fr/ASUS-Gaming-NVIDIA-GeForce-3060/dp/B0966689N3/ref=sr_1_6?__mk_fr_FR=%C3%85M%C3%85%C5%BD%C3%95%C3%91&crid=25O9H0ICDZX1I&keywords=rtx&qid=1673536440&sprefix=rtx%2Caps%2C174&sr=8-6");
+    product_repo.create("RTX 4080", "Carte graphique nouvelle génération Nvidia dôtée de RayTracing et DLSS 2.0", 1499,1,value_RTX4080, convertedOne,"https://www.amazon.fr/ASUS-Gaming-NVIDIA-GeForce-3060/dp/B0966689N3/ref=sr_1_6?__mk_fr_FR=%C3%85M%C3%85%C5%BD%C3%95%C3%91&crid=25O9H0ICDZX1I&keywords=rtx&qid=1673536440&sprefix=rtx%2Caps%2C174&sr=8-6");
+    product_repo.create("GTX 1070 Armor OC", "Ma carte graphique overclock de 2019", 349,1, value_GTX1070, convertedOne,"https://www.amazon.fr/ASUS-Gaming-NVIDIA-GeForce-3060/dp/B0966689N3/ref=sr_1_6?__mk_fr_FR=%C3%85M%C3%85%C5%BD%C3%95%C3%91&crid=25O9H0ICDZX1I&keywords=rtx&qid=1673536440&sprefix=rtx%2Caps%2C174&sr=8-6");
+    product_repo.create("Radeon RX 6600", "Carte graphique AMD, bon rapport qualité/prix", 449,1, value_RX6600, convertedOne,"https://www.amazon.fr/ASUS-Gaming-NVIDIA-GeForce-3060/dp/B0966689N3/ref=sr_1_6?__mk_fr_FR=%C3%85M%C3%85%C5%BD%C3%95%C3%91&crid=25O9H0ICDZX1I&keywords=rtx&qid=1673536440&sprefix=rtx%2Caps%2C174&sr=8-6");
 
 }
