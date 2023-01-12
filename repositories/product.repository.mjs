@@ -61,7 +61,7 @@ export class ProductRepository {
     }
 
     latests(){
-        return db.products.findAll({order:['id', 'DESC'],limit:5});
+        return db.products.findAll({limit:5});
     }
 
     deleteAll() {
