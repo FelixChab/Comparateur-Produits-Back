@@ -66,7 +66,15 @@ export class CategoryController {
     };
 
     update(req,res){
-
+        const id = req.params.id;
+        const {name} = req.body;
+        this.repository.update(id, name)
+            .then(data => res.send(data))
+            .catch(err => {
+                res.status(500).send({
+                    message: err.message || "Some error occurred while updating the category."
+                });
+            });
     }
 
     delete(req,res){

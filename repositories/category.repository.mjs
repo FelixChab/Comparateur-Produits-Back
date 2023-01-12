@@ -53,8 +53,10 @@ export class CategoryRepository {
         return object;
     }
 
-    update(req,res){
-
+    async update(id,name) {
+        const category = await db.category.findOne({id: id});
+        category.update({name:name});
+        return category.save();
     }
 
     delete(id){
