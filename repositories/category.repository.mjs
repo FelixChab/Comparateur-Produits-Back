@@ -21,7 +21,7 @@ export class CategoryRepository {
 
 
     findAll() {
-        return db.category.findAll();
+        return db.category.findAll({order:['createdAt', 'DESC'], limit:5});
     }
 
     getCharacteristic(id){

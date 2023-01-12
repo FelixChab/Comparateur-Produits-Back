@@ -89,7 +89,14 @@ export class ProductController {
     }
 
     deleteAll(req,res){
+    }
 
+    latest(req,res){
+        this.repository.latest()
+            .then(data => res.send(data))
+            .catch(err => {
+                message: err.message || "Some error occurred while retrieving the latest products."
+            });
     }
 
 }

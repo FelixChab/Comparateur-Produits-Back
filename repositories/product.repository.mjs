@@ -60,6 +60,10 @@ export class ProductRepository {
             });
     }
 
+    latest(){
+        return db.products.findAll();
+    }
+
     deleteAll() {
         // TODO
     }
