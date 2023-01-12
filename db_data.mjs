@@ -1,6 +1,9 @@
 import { db } from "./models/index.mjs";
 import { CategoryRepository } from "./repositories/category.repository.mjs";
 import { ProductRepository } from "./repositories/product.repository.mjs";
+import {fileURLToPath} from "url";
+import path from "path";
+import * as fs from "fs";
 
 // Création de jeu de données
 export const initData = () => {
@@ -78,9 +81,18 @@ export const initData = () => {
     });
 
     // Création de Produits
-    product_repo.create("RTX 2070", "Carte graphique Nvidia dôtée de RayTracing", 10, 1, value_RTX2070, 'http://185.212.226.160/image/1');
-    product_repo.create("RTX 4080", "Carte graphique nouvelle génération Nvidia dôtée de RayTracing et DLSS 2.0", 10,1,value_RTX4080, 'http://185.212.226.160/image/2');
-    product_repo.create("GTX 1070 Armor OC", "Ma carte graphique overclock de 2019", 10,1, value_GTX1070, 'http://185.212.226.160/image/3');
-    product_repo.create("Radeon RX 6600", "Carte graphique AMD, bon rapport qualité/prix", 10,1, value_RX6600, 'http://185.212.226.160/image/4');
+
+    const __filename = fileURLToPath(import.meta.url);
+    const __dirname = path.dirname(__filename);
+    const customPath = path.join(__dirname, 'images/');
+    var binarydata = fs.readFileSync(customPath+'1.png').toString("base64");
+    var converted = new Buffer(binarydata).toString();
+    converted = "data:image/png;base64,"+converted;
+
+    console.log('READER');
+    product_repo.create("RTX 2070", "Carte graphique Nvidia dôtée de RayTracing", 10, 1, value_RTX2070, converted);
+    product_repo.create("RTX 4080", "Carte graphique nouvelle génération Nvidia dôtée de RayTracing et DLSS 2.0", 10,1,value_RTX4080, converted);
+    product_repo.create("GTX 1070 Armor OC", "Ma carte graphique overclock de 2019", 10,1, value_GTX1070, converted);
+    product_repo.create("Radeon RX 6600", "Carte graphique AMD, bon rapport qualité/prix", 10,1, value_RX6600, converted);
 
 }
