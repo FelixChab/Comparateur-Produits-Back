@@ -59,7 +59,7 @@ export class ProductRepository {
     }
 
     latests(){
-        return db.products.findAll({limit:5,   order: db.sequelize.col('id', 'DESC')});
+        return db.products.findAll({limit:5,   order: db.sequelize.literal('id DESC')});
     }
 
     getImage(id){
