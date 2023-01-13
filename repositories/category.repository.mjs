@@ -54,7 +54,7 @@ export class CategoryRepository {
     }
 
     async update(id,name) {
-        const category = await db.category.findOne({id: id});
+        const category = await db.category.findOne({where:{id: id}});
         category.update({name:name});
         return category.save();
     }

@@ -36,7 +36,7 @@ app.use('/characteristics', new characteristicsRoutes());
 // INITIALIZE DATABASE
 db.sequelize.sync({force:true})
     .then(() => {
-        initData();
+        initData().then(r => console.log("data initialized successfully"));
         console.log("Synced db.");
 })
     .catch((err) => {
