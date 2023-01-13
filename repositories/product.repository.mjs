@@ -1,5 +1,4 @@
 import { db } from "../models/index.mjs";
-
 export class ProductRepository {
 
     async create(name, description, price, categoryId, characteristics,image, link) {
@@ -60,7 +59,7 @@ export class ProductRepository {
     }
 
     latests(){
-        return db.products.findAll({limit:5});
+        return db.products.findAll({limit:5,   order: db.sequelize.col('id', 'DESC')});
     }
 
     getImage(id){
